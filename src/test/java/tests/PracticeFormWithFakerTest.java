@@ -13,7 +13,7 @@ public class PracticeFormWithFakerTest {
 
     @Description("проверка данных в форме c использованием рандомных значений")
     @Test
-    void checkDataInForm() {
+    void checkDataInFormWithFaker() {
         Faker faker = new Faker();
         String firstName = faker.name().firstName(),
                 lastName = faker.name().lastName(),
