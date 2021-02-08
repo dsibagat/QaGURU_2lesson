@@ -8,10 +8,7 @@ import pages.InputFields;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selenide.$;
-
-public class PracticeFormWithFakerTest {
+public class PracticeFormWithFakerTestAndHahMap {
     InputFields steps = new InputFields();
 
     @Description("проверка данных в форме c использованием рандомных значений")
@@ -56,18 +53,7 @@ public class PracticeFormWithFakerTest {
                 .chooseStateNCR()
                 .clickOnCityDropDown()
                 .chooseCityDelhi()
-                .clickSubmit();
-
-        $(".table-responsive").shouldHave(
-                text("Student Name " + firstName + " " + lastName),
-                text("Student Email " + email),
-                text("Gender Male"),
-                text("Mobile " + mobile),
-                text("Date of Birth 17 November,1993"),
-                text("Subjects Maths"),
-                text("Hobbies Music, Sports"),
-                text("Picture cat.jpg"),
-                text("Address " + currentAddress),
-                text("State and City NCR Delhi"));
+                .clickSubmit()
+                .checkData(expectedData);
     }
 }
