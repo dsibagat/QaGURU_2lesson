@@ -11,7 +11,7 @@ import static com.codeborne.selenide.Selenide.$;
 public class PracticeFormWithFakerTest {
     InputFields steps = new InputFields();
 
-    @Description("проверка данных в форме")
+    @Description("проверка данных в форме c использованием рандомных значений")
     @Test
     void checkDataInForm() {
         Faker faker = new Faker();
