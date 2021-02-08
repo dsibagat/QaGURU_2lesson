@@ -5,8 +5,8 @@ import jdk.jfr.Description;
 import org.junit.jupiter.api.Test;
 import pages.InputFields;
 
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selenide.$;
+import java.util.HashMap;
+import java.util.Map;
 
 public class PracticeFormWithFakerTest {
     InputFields steps = new InputFields();
@@ -20,6 +20,19 @@ public class PracticeFormWithFakerTest {
                 email = faker.internet().emailAddress(),
                 mobile = faker.phoneNumber().subscriberNumber(10),
                 currentAddress = faker.address().fullAddress();
+
+        Map<String, String> expectedData = new HashMap<>() {{
+            put("Student Name", firstName + " " + lastName);
+            put("Student Email", email);
+            put("Gender", "Male");
+            put("Mobile", mobile);
+            put("Date of Birth", "17 November,1993");
+            put("Subjects", "Maths");
+            put("Hobbies", "Music, Sports");
+            put("Picture", "cat.jpg");
+            put("Address", currentAddress);
+            put("State and City", "NCR Delhi");
+        }};
 
         steps.openPracticeForm()
                 .setFirstName(firstName)
@@ -40,18 +53,7 @@ public class PracticeFormWithFakerTest {
                 .chooseStateNCR()
                 .clickOnCityDropDown()
                 .chooseCityDelhi()
-                .clickSubmit();
-
-        $(".table-responsive").shouldHave(
-                text("Student Name " + firstName + " " + lastName),
-                text("Student Email " + email),
-                text("Gender Male"),
-                text("Mobile " + mobile),
-                text("Date of Birth 17 November,1993"),
-                text("Subjects Maths"),
-                text("Hobbies Music, Sports"),
-                text("Picture cat.jpg"),
-                text("Address " + currentAddress),
-                text("State and City NCR Delhi"));
+                .clickSubmit()
+                .checkData(expectedData);
     }
 }
