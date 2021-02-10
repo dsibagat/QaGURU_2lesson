@@ -24,19 +24,6 @@ public class PracticeFormWithFakerTest {
                 mobile = faker.phoneNumber().subscriberNumber(10),
                 currentAddress = faker.address().fullAddress();
 
-        Map<String, String> expectedData = new HashMap<>() {{
-            put("Student Name", firstName + " " + lastName);
-            put("Student Email", email);
-            put("Gender", "Male");
-            put("Mobile", mobile);
-            put("Date of Birth", "17 November,1993");
-            put("Subjects", "Maths");
-            put("Hobbies", "Music, Sports");
-            put("Picture", "cat.jpg");
-            put("Address", currentAddress);
-            put("State and City", "NCR Delhi");
-        }};
-
         steps.openPracticeForm()
                 .setFirstName(firstName)
                 .setLastName(lastName)

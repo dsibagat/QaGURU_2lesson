@@ -131,17 +131,5 @@ public class InputFields {
         clickSubmit.click();
         return this;
     }
-
-    public InputFields checkData(Map<String, String> expectedData) {
-        SoftAssertions softly = new SoftAssertions();
-        for (SelenideElement element : $$(".table-responsive tbody tr")) {
-            String key = element.$("td").getText();
-            String actualValue = element.$("td", 1).getText();
-            String expectedValue = expectedData.get(key);
-            softly.assertThat(actualValue).isEqualTo(expectedValue);
-        }
-        softly.assertAll();
-        return this;
-    }
 }
 
