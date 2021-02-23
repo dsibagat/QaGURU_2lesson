@@ -35,7 +35,7 @@ public class PracticeFormWithFakerTest {
                 .setSubject("Math")
                 .clickOnMusicCheckBoxHobby()
                 .clickOnSportsCheckBoxHobby()
-                .uploadFile("src/test/resources/cat.jpg")
+                .uploadFile("cat.jpg")
                 .setCurrentAddress(currentAddress)
                 .clickOnStateDropDown()
                 .chooseStateNCR()
