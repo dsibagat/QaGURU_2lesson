@@ -1,7 +1,6 @@
 package tests;
 
 import com.github.javafaker.Faker;
-import jdk.jfr.Description;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import pages.InputFields;
@@ -12,7 +11,6 @@ import static com.codeborne.selenide.Selenide.$;
 public class PracticeFormWithFakerTest {
     InputFields steps = new InputFields();
 
-    @Description("проверка данных в форме c использованием рандомных значений")
     @Test
     void checkDataInFormWithFaker() {
         Faker faker = new Faker();

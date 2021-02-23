@@ -1,6 +1,5 @@
 package tests;
 
-import jdk.jfr.Description;
 import org.junit.jupiter.api.Test;
 import pages.InputFields;
 
@@ -10,7 +9,6 @@ import static com.codeborne.selenide.Selenide.$;
 public class PracticeFormTest {
     InputFields steps = new InputFields();
 
-    @Description("проверка данных в форме")
     @Test
     void checkDataInForm() {
         steps.openPracticeForm()
