@@ -2,11 +2,9 @@ package tests;
 
 import com.github.javafaker.Faker;
 import jdk.jfr.Description;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import pages.InputFields;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
@@ -56,5 +54,15 @@ public class PracticeFormWithFakerTest {
                 text("Picture cat.jpg"),
                 text("Address " + currentAddress),
                 text("State and City NCR Delhi"));
+    }
+
+    @Test
+    @Tag("negative")
+    void negativeCheckDataInForm() {
+        steps.openPracticeForm()
+                .clickOnStateDropDown()
+                .clickSubmit();
+
+        $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
     }
 }

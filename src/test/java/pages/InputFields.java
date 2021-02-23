@@ -1,13 +1,12 @@
 package pages;
 
 import com.codeborne.selenide.SelenideElement;
-import org.assertj.core.api.SoftAssertions;
 
 import java.io.File;
-import java.util.Map;
 
 import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.open;
 
 public class InputFields {
 
