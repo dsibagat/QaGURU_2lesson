@@ -16,21 +16,29 @@ public class PracticeFormTest {
                 .setLastName("Sib")
                 .setUserEmail("test@test.test")
                 .setUserNumber("9315469394")
-                .clickRadioButtonGenderMale()
+                .clickRadioButtonGender("Male")
                 .clickOnDateOfBirth()
                 .selectMonth("November")
                 .selectYear("1993")
-                .selectBirthDayInCalendar()
+                .selectBirthDayInCalendar("17")
                 .setSubject("Math")
-                .clickOnMusicCheckBoxHobby()
-                .clickOnSportsCheckBoxHobby()
-                .uploadFile("src/test/resources/cat.jpg")
+                .clickOnCheckBoxHobby("Music")
+                .clickOnCheckBoxHobby("Sports")
+                .uploadFile("cat.jpg")
                 .setCurrentAddress("Address")
-                .clickOnStateDropDown()
-                .chooseStateNCR()
-                .clickOnCityDropDown()
-                .chooseCityDelhi()
+                .chooseState("NCR")
+                .chooseCity("Delhi")
                 .clickSubmit();
-        $(".table-responsive").shouldHave(text("Student Name Damir Sib"), text("Student Email test@test.test"), text("Gender Male"), text("Mobile 9315469394"), text("Date of Birth 17 November,1993"), text("Subjects Maths"), text("Hobbies Music, Sports"), text("Picture cat.jpg"), text("Address Address"), text("State and City NCR Delhi"));
+        $(".table-responsive").shouldHave(
+                text("Student Name Damir Sib"),
+                text("Student Email test@test.test"),
+                text("Gender Male"),
+                text("Mobile 9315469394"),
+                text("Date of Birth 17 November,1993"),
+                text("Subjects Maths"),
+                text("Hobbies Music, Sports"),
+                text("Picture cat.jpg"),
+                text("Address Address"),
+                text("State and City NCR Delhi"));
     }
 }
