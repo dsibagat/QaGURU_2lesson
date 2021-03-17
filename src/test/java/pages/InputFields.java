@@ -9,7 +9,8 @@ import static com.codeborne.selenide.Selenide.open;
 
 public class InputFields {
 
-    SelenideElement firstName = $("#firstName"),
+    SelenideElement
+            firstName = $("#firstName"),
             lastName = $("#lastName"),
             userEmail = $("#userEmail"),
             userNumber = $("#userNumber"),
