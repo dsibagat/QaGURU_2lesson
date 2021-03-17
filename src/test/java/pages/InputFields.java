@@ -3,9 +3,9 @@ package pages;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
 
 public class InputFields {
 
@@ -14,21 +14,24 @@ public class InputFields {
             lastName = $("#lastName"),
             userEmail = $("#userEmail"),
             userNumber = $("#userNumber"),
-            radioButtonMale = $(byText("Male")),
             dateOfBirth = $("#dateOfBirthInput"),
             monthOfBirth = $(".react-datepicker__month-select"),
             yearOfBirth = $(".react-datepicker__year-select"),
-            birthDay = $(".react-datepicker__day--017"),
             subjectsInput = $("#subjectsInput"),
-            checkBoxSports = $(byText("Sports")),
-            checkBoxMusic = $(byText("Music")),
             uploadFile = $("#uploadPicture"),
             currentAddress = $("#currentAddress"),
             dropDownState = $(byText("Select State")),
-            dropDownStateNCR = $(byText("NCR")),
             dropDownCity = $(byText("Select City")),
-            dropDownCityDelhi = $(byText("Delhi")),
             clickSubmit = $(byText("Submit"));
+
+    private SelenideElement getElementByText(String text) {
+        return $(byText(text));
+    }
+
+    private SelenideElement birthDay(String day) {
+        return $$(".react-datepicker__day").filter(not(cssClass(".react-datepicker__day--outside-month")))
+                .find(text(day));
+    }
 
     @Step("Open students registration form")
     public InputFields openPracticeForm() {
@@ -60,9 +63,9 @@ public class InputFields {
         return this;
     }
 
-    @Step("Select male gender")
-    public InputFields clickRadioButtonGenderMale() {
-        radioButtonMale.click();
+    @Step("Select '{gender}' gender")
+    public InputFields clickRadioButtonGender(String gender) {
+        getElementByText(gender).click();
         return this;
     }
 
@@ -73,8 +76,8 @@ public class InputFields {
     }
 
     @Step("Select day")
-    public InputFields selectBirthDayInCalendar() {
-        birthDay.click();
+    public InputFields selectBirthDayInCalendar(String day) {
+        birthDay(day).click();
         return this;
     }
 
@@ -90,57 +93,41 @@ public class InputFields {
         return this;
     }
 
-    @Step("Set subject")
+    @Step("Set subject {subject}")
     public InputFields setSubject(String subject) {
         subjectsInput.val(subject).pressEnter();
         return this;
     }
 
-    @Step("Select music hobby")
-    public InputFields clickOnMusicCheckBoxHobby() {
-        checkBoxMusic.click();
+    @Step("Select '{hobby}' hobby")
+    public InputFields clickOnCheckBoxHobby(String hobby) {
+        getElementByText(hobby).click();
         return this;
     }
 
-    @Step("Select sports hobby")
-    public InputFields clickOnSportsCheckBoxHobby() {
-        checkBoxSports.click();
-        return this;
-    }
-
-    @Step("Upload file")
+    @Step("Upload file {fileSource}")
     public InputFields uploadFile(String fileSource) {
         uploadFile.uploadFromClasspath(fileSource);
         return this;
     }
 
-    @Step("Set address")
+    @Step("Set address {address}")
     public InputFields setCurrentAddress(String address) {
         currentAddress.val(address);
         return this;
     }
 
-    @Step("Click on state dropdown")
-    public InputFields clickOnStateDropDown() {
+    @Step("Choose state {state}")
+    public InputFields chooseState(String state) {
         dropDownState.scrollTo().click();
+        getElementByText(state).click();
         return this;
     }
 
-    @Step("Choose state in state dropdown")
-    public InputFields chooseStateNCR() {
-        dropDownStateNCR.click();
-        return this;
-    }
-
-    @Step("Click on city dropdown")
-    public InputFields clickOnCityDropDown() {
-        dropDownCity.click();
-        return this;
-    }
-
-    @Step("Choose city in city dropdown")
-    public InputFields chooseCityDelhi() {
-        dropDownCityDelhi.click();
+    @Step("Choose {city} in city dropdown")
+    public InputFields chooseCity(String city) {
+        dropDownCity.scrollTo().click();
+        getElementByText(city).click();
         return this;
     }
 

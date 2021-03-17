@@ -25,20 +25,18 @@ public class PracticeFormWithFakerTest {
                 .setLastName(lastName)
                 .setUserEmail(email)
                 .setUserNumber(mobile)
-                .clickRadioButtonGenderMale()
+                .clickRadioButtonGender("Male")
                 .clickOnDateOfBirth()
                 .selectMonth("November")
                 .selectYear("1993")
-                .selectBirthDayInCalendar()
+                .selectBirthDayInCalendar("17")
                 .setSubject("Math")
-                .clickOnMusicCheckBoxHobby()
-                .clickOnSportsCheckBoxHobby()
+                .clickOnCheckBoxHobby("Music")
+                .clickOnCheckBoxHobby("Sports")
                 .uploadFile("cat.jpg")
                 .setCurrentAddress(currentAddress)
-                .clickOnStateDropDown()
-                .chooseStateNCR()
-                .clickOnCityDropDown()
-                .chooseCityDelhi()
+                .chooseState("NCR")
+                .chooseCity("Delhi")
                 .clickSubmit();
 
         $(".table-responsive").shouldHave(
@@ -58,7 +56,6 @@ public class PracticeFormWithFakerTest {
     @Tag("negative")
     void negativeCheckDataInForm() {
         steps.openPracticeForm()
-                .clickOnStateDropDown()
                 .clickSubmit();
 
         $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
